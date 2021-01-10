@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   
   def create
     Post.create(content: params[:content])
-    redirect_to action :index
+    redirect_to action: :index
 
     #下の表記でも可
     # post = Post.new(content: params[:content])
@@ -18,6 +18,7 @@ class PostsController < ApplicationController
   end
 
   def checked
+    # binding.pry
     post = Post.find(params[:id])
     if post.checked
       post.update(checked: false)
@@ -26,7 +27,7 @@ class PostsController < ApplicationController
     end
 
     item = Post.find(params[:id])
-    render json: ( post: item)
+    render json: { post: item }
   end
 
 end
